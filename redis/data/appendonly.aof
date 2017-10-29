@@ -1,0 +1,49 @@
+*2
+$6
+SELECT
+$1
+0
+*3
+$3
+SET
+$9
+user:mike
+$10
+Mike SMith
+*4
+$5
+RPUSH
+$7
+friends
+$4
+Fred
+$3
+Bob
+*3
+$3
+SET
+$9
+user:jill
+$12
+Jill Jackson
+*3
+$3
+SET
+$9
+user:mary
+$13
+Mary Williams
+*3
+$3
+SET
+$9
+user:john
+$8
+John Doe
+*3
+$3
+SET
+$9
+user:paul
+$11
+Paul Harris

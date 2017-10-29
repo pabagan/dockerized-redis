@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+  # redis
+  redis:  
+    build: .
+    container_name: "redis"
+    expose:
+      - 6379
+    links:
+      - mysql
+    volumes:
+      - ./redis/conf:/usr/local/etc/redis
+      - ./redis/data:/data
+    env_file: .env
+
+  # mysql
+  mysql:
+    image: mysql:latest
+    volumes_from:
+      - mysql-data
+    #ports:
+    #  - "3306:3306"
+    container_name: "mysql"
+    env_file: .env
+  
+  # mysql data
+  mysql-data:
+    image: mysql:latest
+    container_name: "mysql-data"
+    volumes:
+      - ${PERSISTENT_DB}:/var/lib/mysql
+    command: "true"
+    env_file: .env
+  
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "phpmyadmin"
+    ports:
+      - 8080:80
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
